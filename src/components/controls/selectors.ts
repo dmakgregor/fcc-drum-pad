@@ -1,5 +1,5 @@
 import { type RootState } from "../../app/store";
-import { type ControlsState } from "./controlsSlice";
+import { type ControlsState } from "./slice";
 
 export const selectBank = (state: RootState): ControlsState["bank"] =>
   state.controls.bank;

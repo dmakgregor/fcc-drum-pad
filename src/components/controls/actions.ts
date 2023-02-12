@@ -1,3 +1,3 @@
-import { controlsSlice } from "./controlsSlice";
+import { controlsSlice } from "./slice";
 
 export const { changeVolume, switchPower, changeBank } = controlsSlice.actions;

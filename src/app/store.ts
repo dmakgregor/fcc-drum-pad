@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import controlsReducer from "../components/controls/controlsSlice";
+import controlsReducer from "../components/controls/slice";
+import padsSlice from "../components/pads/slice";
 
 const store = configureStore({
   reducer: {
+    pads: padsSlice,
     controls: controlsReducer,
   },
 });
