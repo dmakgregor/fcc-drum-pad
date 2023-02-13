@@ -9,7 +9,7 @@ export interface ControlsState {
 const initialState: ControlsState = {
   volume: 100,
   power: true,
-  bank: 1,
+  bank: 0,
 };
 
 export const controlsSlice = createSlice({
@@ -30,5 +30,7 @@ export const controlsSlice = createSlice({
     }),
   },
 });
+
+export const { changeVolume, switchPower, changeBank } = controlsSlice.actions;
 
 export default controlsSlice.reducer;
