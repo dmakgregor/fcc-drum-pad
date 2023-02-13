@@ -12,6 +12,7 @@ export const Pad = ({
   keySymbol,
 }: PadProps): JSX.Element | null => (
   <button id={keyCode}>
+    {keySymbol}
     <audio src={src} id={keySymbol} />
   </button>
 );
