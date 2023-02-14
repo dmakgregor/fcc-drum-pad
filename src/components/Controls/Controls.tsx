@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Controls = (): JSX.Element => {
+export const Controls: React.FC = () => {
   return <div className="controls">Controls</div>;
 };

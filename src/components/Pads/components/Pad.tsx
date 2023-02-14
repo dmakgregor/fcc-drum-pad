@@ -6,11 +6,7 @@ export interface PadProps {
   keySymbol: string;
 }
 
-export const Pad = ({
-  src,
-  keyCode,
-  keySymbol,
-}: PadProps): JSX.Element | null => (
+export const Pad: React.FC<PadProps> = ({ src, keyCode, keySymbol }) => (
   <button id={keyCode}>
     {keySymbol}
     <audio src={src} id={keySymbol} />

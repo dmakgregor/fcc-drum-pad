@@ -3,7 +3,7 @@ import { Pads } from "../Pads";
 import { Display } from "../Display";
 import { Controls } from "../Controls";
 
-export const DrumMachine = (): JSX.Element => {
+export const DrumMachine: React.FC = () => {
   return (
     <div
       id="drum-machine"

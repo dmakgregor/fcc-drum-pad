@@ -4,7 +4,7 @@ import { selectBank } from "../Controls/selectors";
 import { selectPadsBank } from "./selectors";
 import { Pad } from "./components/Pad";
 
-export const Pads = (): JSX.Element => {
+export const Pads: React.FC = () => {
   const currentBank = useAppSelector(selectBank);
   const pads = useAppSelector(selectPadsBank(currentBank));
 

@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Display = (): JSX.Element => {
+export const Display: React.FC = () => {
   return <div id="display">Display</div>;
 };
