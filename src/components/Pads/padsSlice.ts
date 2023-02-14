@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { type PadProps } from "./components/Pad";
 
-export interface BankItem extends PadProps {
+export interface BankItem {
+  src: string;
   name: string;
+  keyCode: string;
+  keySymbol: string;
 }
 
 export type PadsState = BankItem[][];

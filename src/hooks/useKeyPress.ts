@@ -1,7 +1,11 @@
-import { type Dispatch, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  type Key,
+  type KeyPressContextType,
+} from "../providers/KeyPressProvider";
 
-export const useKeyPress = (): [null | string, Dispatch<null | string>] => {
-  const [key, setKey] = useState<null | string>(null);
+export const useKeyPress = (): KeyPressContextType => {
+  const [key, setKey] = useState<Key>(null);
 
   const onKeyDown = (e: KeyboardEvent): void => {
     setKey(e.code);
@@ -21,5 +25,5 @@ export const useKeyPress = (): [null | string, Dispatch<null | string>] => {
     };
   }, []);
 
-  return [key, setKey];
+  return { key, setKey };
 };
