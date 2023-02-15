@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import {
-  type Key,
-  type KeyPressContextType,
-} from "../providers/KeyPressProvider";
+import { useEffect, useState } from 'react';
+import { type Key, type KeyPressContextType } from '../providers/KeyPressProvider';
 
 export const useKeyPress = (): KeyPressContextType => {
   const [key, setKey] = useState<Key>(null);
@@ -16,12 +13,12 @@ export const useKeyPress = (): KeyPressContextType => {
   };
 
   useEffect(() => {
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("keyup", onKeyUp);
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('keyup', onKeyUp);
 
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("keyup", onKeyUp);
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
 

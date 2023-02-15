@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import controlsReducer from "../components/Controls/controlsSlice";
-import padsSlice from "../components/Pads/padsSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import controlsReducer from '../components/Controls/controlsSlice';
+import padsSlice from '../components/Pads/padsSlice';
 
 const store = configureStore({
   reducer: {

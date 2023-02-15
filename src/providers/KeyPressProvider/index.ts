@@ -1,1 +1,1 @@
-export * from "./KeyPressProvider";
+export * from './KeyPressProvider';

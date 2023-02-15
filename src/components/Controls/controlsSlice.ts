@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export interface ControlsState {
   volume: number;
@@ -13,18 +13,18 @@ const initialState: ControlsState = {
 };
 
 export const controlsSlice = createSlice({
-  name: "controls",
+  name: 'controls',
   initialState,
   reducers: {
-    changeVolume: (state, action: PayloadAction<ControlsState["volume"]>) => ({
+    changeVolume: (state, action: PayloadAction<ControlsState['volume']>) => ({
       ...state,
       volume: action.payload,
     }),
-    switchPower: (state, action: PayloadAction<ControlsState["power"]>) => ({
+    switchPower: (state, action: PayloadAction<ControlsState['power']>) => ({
       ...state,
       power: action.payload,
     }),
-    changeBank: (state, action: PayloadAction<ControlsState["bank"]>) => ({
+    changeBank: (state, action: PayloadAction<ControlsState['bank']>) => ({
       ...state,
       bank: action.payload,
     }),

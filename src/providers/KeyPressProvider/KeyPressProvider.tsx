@@ -1,5 +1,5 @@
-import React, { createContext } from "react";
-import { useKeyPress } from "../../hooks";
+import React, { createContext } from 'react';
+import { useKeyPress } from '../../hooks';
 
 export type Key = string | null;
 
@@ -17,14 +17,8 @@ export const KeyPressContext = createContext<KeyPressContextType>({
   setKey: () => {},
 });
 
-export const KeyPressProvider: React.FC<KeyPressProviderType> = ({
-  children,
-}) => {
+export const KeyPressProvider: React.FC<KeyPressProviderType> = ({ children }) => {
   const { key, setKey } = useKeyPress();
 
-  return (
-    <KeyPressContext.Provider value={{ key, setKey }}>
-      {children}
-    </KeyPressContext.Provider>
-  );
+  return <KeyPressContext.Provider value={{ key, setKey }}>{children}</KeyPressContext.Provider>;
 };
