@@ -1,7 +1,7 @@
 import React from 'react';
 import { PadsPanel } from '../PadsPanel';
 import { Display } from '../Display';
-import { Controls } from '../AppControls';
+import { AppControls } from '../AppControls';
 
 export const DrumMachine: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ export const DrumMachine: React.FC = () => {
         <Display />
       </div>
       <div className="row-span-1">
-        <Controls />
+        <AppControls />
       </div>
     </div>
   );
