@@ -1,15 +1,12 @@
-import { equals } from 'ramda';
-import React, { type FC, useMemo } from 'react';
+import React, { type FC, useEffect, useRef } from 'react';
 // components
-import { type BankItem, type PressedKeyType } from '../../../types';
+import { type PadPropsType } from '../../../types';
 /// ////////////////////////////////////////////////////////////////////////////
 
-interface PadProps extends BankItem {
-  handlePadPress: (keyCode: PressedKeyType) => void;
-  pressedKey: PressedKeyType;
-}
+export const Pad: FC<PadPropsType> = ({ src, keyCode, keySymbol, handlePadPress, pressedKey }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const padPressed = pressedKey === keyCode;
 
-export const Pad: FC<PadProps> = ({ src, keyCode, keySymbol, handlePadPress, pressedKey }) => {
   const handeMouseDown = (): void => {
     handlePadPress(keyCode);
   };
@@ -18,16 +15,22 @@ export const Pad: FC<PadProps> = ({ src, keyCode, keySymbol, handlePadPress, pre
     handlePadPress(null);
   };
 
-  const additionalClasses = useMemo(
-    () => (equals(pressedKey, keyCode) ? 'bg-green-300' : 'bg-green-200'),
-    [pressedKey, keyCode]
-  );
-  const buttonClasses = useMemo(() => `drum-pad p-4 rounded ${additionalClasses}`, [additionalClasses]);
+  const additionalClasses = padPressed ? 'bg-green-300' : 'bg-green-200';
+  const buttonClasses = `drum-pad p-4 rounded ${additionalClasses}`;
+
+  useEffect(() => {
+    if (audioRef.current !== null) {
+      if (padPressed) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(() => {});
+      }
+    }
+  }, [padPressed]);
 
   return (
     <button className={buttonClasses} onMouseDown={handeMouseDown} onMouseUp={handeMouseUp}>
       {keySymbol}
-      <audio src={src} id={keySymbol} />
+      <audio ref={audioRef} src={src} id={keyCode} />
     </button>
   );
 };

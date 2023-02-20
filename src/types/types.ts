@@ -28,11 +28,16 @@ export interface AppControlsStateType {
   bank: 0 | 1;
 }
 
-export interface BankItem {
+export interface BankItemType {
   src: string;
   name: string;
   keyCode: string;
   keySymbol: string;
 }
 
-export type PadsStateType = BankItem[][];
+export type PadsStateType = BankItemType[][];
+
+export interface PadPropsType extends BankItemType {
+  handlePadPress: (keyCode: PressedKeyType) => void;
+  pressedKey: PressedKeyType;
+}
