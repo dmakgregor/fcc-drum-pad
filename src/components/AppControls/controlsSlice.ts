@@ -1,30 +1,25 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type AppControlsStateType } from '../../types';
 
-export interface ControlsState {
-  volume: number;
-  power: boolean;
-  bank: 0 | 1;
-}
-
-const initialState: ControlsState = {
+const initialState: AppControlsStateType = {
   volume: 100,
   power: true,
   bank: 0,
 };
 
 export const controlsSlice = createSlice({
-  name: 'controls',
+  name: 'appControls',
   initialState,
   reducers: {
-    changeVolume: (state, action: PayloadAction<ControlsState['volume']>) => ({
+    changeVolume: (state, action: PayloadAction<AppControlsStateType['volume']>) => ({
       ...state,
       volume: action.payload,
     }),
-    switchPower: (state, action: PayloadAction<ControlsState['power']>) => ({
+    switchPower: (state, action: PayloadAction<AppControlsStateType['power']>) => ({
       ...state,
       power: action.payload,
     }),
-    changeBank: (state, action: PayloadAction<ControlsState['bank']>) => ({
+    changeBank: (state, action: PayloadAction<AppControlsStateType['bank']>) => ({
       ...state,
       bank: action.payload,
     }),

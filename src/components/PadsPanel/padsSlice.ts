@@ -1,15 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { type PadsStateType } from '../../types';
 
-export interface BankItem {
-  src: string;
-  name: string;
-  keyCode: string;
-  keySymbol: string;
-}
-
-export type PadsState = BankItem[][];
-
-const initialState: PadsState = [
+const initialState: PadsStateType = [
   [
     {
       keySymbol: 'Q',

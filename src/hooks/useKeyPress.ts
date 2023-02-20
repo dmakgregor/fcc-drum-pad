@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { type Key, type KeyPressContextType } from '../providers/KeyPressProvider';
+import { type PressedKeyType, type UseKeyPressProps } from '../types';
 
-export const useKeyPress = (): KeyPressContextType => {
-  const [key, setKey] = useState<Key>(null);
+export const useKeyPress = (callback: (keyCode: PressedKeyType) => void): UseKeyPressProps => {
+  const [pressedKey, setPressedKey] = useState<PressedKeyType>(null);
 
   const onKeyDown = (e: KeyboardEvent): void => {
-    setKey(e.code);
+    setPressedKey(e.code);
+    callback(e.code);
   };
 
   const onKeyUp = (_e: KeyboardEvent): void => {
-    setKey(null);
+    setPressedKey(null);
+    callback(null);
   };
 
   useEffect(() => {
@@ -22,5 +24,5 @@ export const useKeyPress = (): KeyPressContextType => {
     };
   }, []);
 
-  return { key, setKey };
+  return { pressedKey, setPressedKey };
 };
