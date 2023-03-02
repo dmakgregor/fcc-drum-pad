@@ -1,36 +1,51 @@
-import React, { type FC, useEffect, useRef } from 'react';
-// components
-import { type PadPropsType } from '../../../types';
+import React, { type FC, useCallback, useContext, useEffect, useState } from 'react';
+// types
+import { type BankItemType } from '../../../types';
+import { ServiceMessageContext } from '../../../providers';
 /// ////////////////////////////////////////////////////////////////////////////
 
-export const Pad: FC<PadPropsType> = ({ src, keyCode, keySymbol, handlePadPress, pressedKey }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const padPressed = pressedKey === keyCode;
+interface PadPropsType extends BankItemType {}
 
-  const handeMouseDown = (): void => {
-    handlePadPress(keyCode);
+export const Pad: FC<PadPropsType> = ({ src, keyCode, keySymbol, name }) => {
+  const [pressed, setPressed] = useState(false);
+  const { setServiceMessage } = useContext(ServiceMessageContext);
+
+  const handleAudioEnd = (): void => {
+    setServiceMessage(null);
+    setPressed(false);
   };
 
-  const handeMouseUp = (): void => {
-    handlePadPress(null);
+  const handleAudio = (): void => {
+    setPressed(true);
+    const audio: HTMLAudioElement | null = document.querySelector(`audio#${keySymbol}`);
+    audio?.addEventListener('ended', handleAudioEnd);
+    audio?.play().catch(() => {});
+    setServiceMessage(name);
   };
 
-  const additionalClasses = padPressed ? 'bg-green-300' : 'bg-green-200';
-  const buttonClasses = `drum-pad p-4 rounded ${additionalClasses}`;
+  const buttonClasses = `drum-pad p-4 rounded ${pressed ? 'bg-green-300' : 'bg-green-200'}`;
+
+  const handleKeyPress = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.code === keyCode) {
+        handleAudio();
+      }
+    },
+    [keyCode]
+  );
 
   useEffect(() => {
-    if (audioRef.current !== null) {
-      if (padPressed) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play().catch(() => {});
-      }
-    }
-  }, [padPressed]);
+    document.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keypress', handleKeyPress);
+    };
+  }, []);
 
   return (
-    <button className={buttonClasses} onMouseDown={handeMouseDown} onMouseUp={handeMouseUp}>
+    <button id={name} onClick={handleAudio} className={buttonClasses}>
       {keySymbol}
-      <audio ref={audioRef} src={src} id={keyCode} />
+      <audio className="clip" src={src} id={keySymbol} />
     </button>
   );
 };

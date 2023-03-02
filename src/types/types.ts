@@ -36,8 +36,3 @@ export interface BankItemType {
 }
 
 export type PadsStateType = BankItemType[][];
-
-export interface PadPropsType extends BankItemType {
-  handlePadPress: (keyCode: PressedKeyType) => void;
-  pressedKey: PressedKeyType;
-}
